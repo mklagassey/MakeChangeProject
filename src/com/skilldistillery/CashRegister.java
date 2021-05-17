@@ -22,7 +22,6 @@ public class CashRegister {
 		double number;
         do {
         	System.out.println("Enter Item Price: ");
-//            System.out.print("Please enter a positive number: ");
             while (!input.hasNextDouble()) {
                 String userInput = input.next();
                 System.out.printf("\"%s\" is not a valid amount. Please enter price with format $xx.xx\n", userInput);
@@ -59,7 +58,7 @@ public class CashRegister {
 		while (price > paid) {
 			double customerOwes = ((price - paid) * 0.01);
 			System.out.printf("Customer is short: $ %.2f%n", customerOwes); 
-			System.out.println("Please enter additional payment amount: ");
+			System.out.println("Please enter additional payment amount: "); // TODO - Validate input is only numeric, using same algorithm as getItemPrice
 			paid += (int) (100 * (input.nextDouble()));
 //				continue;	
 		};
