@@ -19,15 +19,34 @@ public class CashRegister {
 	}
 
 	public static double getItemPrice() {
-		System.out.println("Enter Item Price: ");
-		double itemPrice = input.nextDouble();
+		double number;
+        do {
+        	System.out.println("Enter Item Price: ");
+//            System.out.print("Please enter a positive number: ");
+            while (!input.hasNextDouble()) {
+                String userInput = input.next();
+                System.out.printf("\"%s\" is not a valid amount. Please enter price with format $xx.xx\n", userInput);
+            }
+            number = input.nextDouble();
+        } while (number < 0);
+		double itemPrice = number;
 		return itemPrice;
 
 	}
+	
 
 	public static double getAmtTendered() {
-		System.out.println("Enter amount tendered: ");
-		double amtTendered = input.nextDouble();
+		double number;
+        do {
+        	System.out.println("Enter amount tendered: ");
+            while (!input.hasNextDouble()) {
+                String userInput = input.next();
+                System.out.printf("\"%s\" is not a valid amount. Please enter cash tendered with format $xx.xx\n", userInput);
+            }
+            number = input.nextDouble();
+        } while (number < 0);
+		
+		double amtTendered = number;
 		return amtTendered;
 	}
 
@@ -97,7 +116,6 @@ public class CashRegister {
 				}
 			}
 
-			// TODO - format so that numbers all line up vertically
 			if (twenties > 0) {
 				System.out.printf("Twenties: %2d%n", twenties);
 			}
