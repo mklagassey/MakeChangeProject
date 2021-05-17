@@ -32,14 +32,21 @@ public class CashRegister {
 	}
 
 	public static void exactChangeMsg() {
-		System.out.println("Thank you for your business!");
+		System.out.println("Thank you for your business, please come again!");
 	}
 
 	// TODO - refactor into smaller methods
 	public static void moneyOwedMsg(int price, int paid) {
-		if (price > paid) {
-			String customerOwes = "" + ((double) (price - paid) / 100);
-			System.out.println("Customer is short: $" + customerOwes); // TODO - Format to standard $00.00 output
+		while (price > paid) {
+			double customerOwes = ((price - paid) * 0.01);
+			System.out.printf("Customer is short: $ %.2f%n", customerOwes); 
+			System.out.println("Please enter additional payment amount: ");
+			paid += (int) (100 * (input.nextDouble()));
+//				continue;	
+		};
+
+		if (price == paid) {
+			exactChangeMsg();
 		} else {
 			System.out.println("Amount to give customer in change: ");
 
@@ -89,32 +96,35 @@ public class CashRegister {
 					break;
 				}
 			}
+
+			// TODO - format so that numbers all line up vertically
 			if (twenties > 0) {
-				System.out.println("Twenties: " + twenties);
+				System.out.printf("Twenties: %2d%n", twenties);
 			}
 			if (tens > 0) {
-				System.out.println("Tens: " + tens);
+				System.out.printf("Tens: %6d%n", tens);
 			}
 			if (fives > 0) {
-				System.out.println("Fives: " + fives);
+				System.out.printf("Fives: %5d%n", fives);
 			}
 			if (singles > 0) {
-				System.out.println("Singles: " + singles);
+				System.out.printf("Singles: %3d%n", singles);
 			}
 			if (quarters > 0) {
-				System.out.println("Quarters: " + quarters);
+				System.out.printf("Quarters: %2d%n", quarters);
 			}
 			if (dimes > 0) {
-				System.out.println("Dimes: " + dimes);
+				System.out.printf("Dimes: %5d%n", dimes);
 			}
 			if (nickels > 0) {
-				System.out.println("Nickels: " + nickels);
+				System.out.printf("Nickels: %3d%n", nickels);
 			}
 			if (pennies > 0) {
-				System.out.println("Pennies: " + pennies);
+				System.out.printf("Pennies: %3d%n", pennies);
 			}
 
 		}
+
 	}
 
 	public static int changeDblToInt(double dubIn) {
@@ -123,53 +133,5 @@ public class CashRegister {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // So I can move this code up and down on the screen
